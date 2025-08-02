@@ -34,7 +34,7 @@ export default function DnsConfig({ domain }: DnsConfigProps) {
 
       if (data.Answer && data.Answer.length > 0) {
         const cnameRecord = data.Answer.find(
-          (record: any) => record.type === 5
+          (record: { type: number }) => record.type === 5
         );
         if (cnameRecord) {
           const target = cnameRecord.data.replace(/\.$/, "");
@@ -52,7 +52,7 @@ export default function DnsConfig({ domain }: DnsConfigProps) {
         setDnsStatus("error");
         setErrorMessage("No DNS records found for this domain");
       }
-    } catch (error) {
+    } catch {
       setDnsStatus("error");
       setErrorMessage("Failed to check DNS records");
     } finally {
@@ -74,11 +74,11 @@ export default function DnsConfig({ domain }: DnsConfigProps) {
   const getStatusIcon = () => {
     switch (dnsStatus) {
       case "success":
-        return "✅";
+        return "😼";
       case "error":
-        return "❌";
+        return "😿";
       default:
-        return "⏳";
+        return "🔄";
     }
   };
 

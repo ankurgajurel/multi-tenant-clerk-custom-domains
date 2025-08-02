@@ -18,7 +18,7 @@ export default function Domain({ initialDomain = "" }: DomainProps) {
 
     try {
       await updateDomain(domain);
-    } catch (error) {
+    } catch {
     } finally {
       setSubmitting(false);
     }
